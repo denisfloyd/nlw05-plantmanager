@@ -1,25 +1,37 @@
-import React from "react";
-import { SafeAreaView, View, Text, StyleSheet } from "react-native";
-
-import { Button } from "../components/Button";
-
-import colors from "../styles/colors";
-import fonts from "../styles/fonts";
+import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+} from 'react-native';
+import { Button } from '../components/Button';
+import colors from '../styles/colors';
+import fonts from '../styles/fonts';
 
 export function Confirmation() {
+  const navigation = useNavigation();
+
+  function handleNextScreen() {
+    navigation.navigate('PlantSelect')
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.emoji}>😁</Text>
-
-        <Text style={styles.title}>Prontinho</Text>
-
-        <Text style={styles.subtitle}>
-          Agora vamos começar a cuidar das suas plantinhas com muito cuidado.
+        <Text style={styles.emoji}>
+          😄
         </Text>
-
+        <Text style={styles.title}>
+          Prontinho
+        </Text>
+        <Text style={styles.subtitle}>
+          Agora vamos começar a cuidar das suas{'\n'}
+          plantinhas com muito cuidado
+        </Text>
         <View style={styles.footer}>
-          <Button title="Começar" />
+          <Button title="Começar" onPress={handleNextScreen} />
         </View>
       </View>
     </SafeAreaView>
@@ -29,38 +41,37 @@ export function Confirmation() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "space-around"
+    alignItems: 'center',
+    justifyContent: 'space-around'
   },
   content: {
-    padding: 30,
-    width: "100%",
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  title: {
-    marginTop: 15,
-    color: colors.heading,
-    fontFamily: fonts.heading,
-    fontSize: 22,
-    lineHeight: 38,
-    textAlign: "center"
-  },
-  subtitle: {
-    marginTop: 20,
-    paddingHorizontal: 20,
-    color: colors.heading,
-    fontFamily: fonts.text,
-    fontSize: 17,
-    textAlign: "center"
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    padding: 30
   },
   emoji: {
     fontSize: 78
   },
+  title: {
+    fontSize: 22,
+    fontFamily: fonts.heading,
+    color: colors.heading,
+    textAlign: 'center',
+    lineHeight: 38,
+    marginTop: 15,
+  },
+  subtitle: {
+    fontFamily: fonts.text,
+    textAlign: 'center',
+    fontSize: 17,
+    paddingVertical: 10,
+    color: colors.heading,
+  },
   footer: {
-    marginTop: 30,
+    width: '100%',
     paddingHorizontal: 50,
-    width: "100%"
+    marginTop: 20,
   }
 });
